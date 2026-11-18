@@ -1,17 +1,33 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
+import org.example.http.ApiHttpClient;
+import org.example.model.MediaRecord;
+import org.example.source.TvmazeSource;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        ApiHttpClient httpClient = new ApiHttpClient();
+
+        TvmazeSource tvmaze = new TvmazeSource(httpClient);
+
+        System.out.println("Ищем сериал 'breaking bad'...");
+        List<MediaRecord> records = tvmaze.fetch("breaking bad");
+
+        System.out.println("Найдено записей: " + records.size());
+        System.out.println("========================================");
+
+        for (MediaRecord r : records) {
+            System.out.println("Источник: " + r.source());
+            System.out.println("Категория: " + r.category());
+            System.out.println("Запрос: " + r.key());
+            System.out.println("Время: " + r.timestamp());
+            System.out.println("--- Данные (fields) ---");
+
+            r.fields().forEach((k, v) -> System.out.println("  " + k + ": " + v));
+
+            System.out.println("========================================");
         }
     }
 }
