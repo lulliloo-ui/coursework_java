@@ -9,6 +9,10 @@ public class JsonUtils {
     }
 
     public static Double number(JsonNode node) {
-        return node == null || node.isMissingNode() || node.isNull() ? null : node.asDouble();
+        return node != null && node.isNumber() ? node.asDouble() : null;
+    }
+
+    public static Integer integer(JsonNode node) {
+        return node == null || node.isMissingNode() || node.isNull() ? null : node.asInt();
     }
 }

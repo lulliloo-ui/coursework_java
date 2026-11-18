@@ -35,7 +35,9 @@ public class TvmazeSource implements DataSource {
         List<MediaRecord> result = new ArrayList<>();
 
         try {
-            String url = "https://api.tvmaze.com/search/shows?q=" + URLEncoder.encode(query, StandardCharsets.UTF_8);
+            String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
+
+            String url = "https://api.tvmaze.com/search/shows?q=" + encodedQuery;
             String jsonResponse = httpClient.get(url);
 
             JsonNode root = objectMapper.readTree(jsonResponse);
