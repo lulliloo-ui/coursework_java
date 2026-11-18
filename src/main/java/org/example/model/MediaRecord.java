@@ -6,7 +6,7 @@ import java.util.Map;
 public record MediaRecord(
         String source,
         String category,
-        String key,
+        String query,
         Instant timestamp,
         Map<String, Object> fields
 ) {}

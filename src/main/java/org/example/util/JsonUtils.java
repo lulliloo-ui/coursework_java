@@ -13,6 +13,6 @@ public class JsonUtils {
     }
 
     public static Integer integer(JsonNode node) {
-        return node == null || node.isMissingNode() || node.isNull() ? null : node.asInt();
+        return node != null && node.isNumber() ? node.asInt() : null;
     }
 }

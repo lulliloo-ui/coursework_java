@@ -7,7 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
-public class ApiHttpClient {
+public class ApiHttpClient implements HttpClientWrapper {
 
     private final HttpClient client;
 
@@ -17,6 +17,7 @@ public class ApiHttpClient {
                 .build();
     }
 
+    @Override
     public String get(String url) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
@@ -36,10 +37,10 @@ public class ApiHttpClient {
             return response.body();
 
         } catch (IOException e) {
-            throw new RuntimeException("Не удалось выполнить запрос: " + url, e);
+            throw new HttpClientException("Не удалось выполнить запрос: " + url, e);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            throw new RuntimeException("Запрос прерван: " + url, e);
+            throw new HttpClientException("Запрос прерван: " + url, e);
         }
     }
 }

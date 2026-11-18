@@ -1,6 +1,8 @@
 package org.example.source;
 
 import org.example.http.ApiHttpClient;
+import org.example.http.HttpClientException;
+import org.example.http.HttpClientWrapper;
 import org.example.model.MediaRecord;
 import org.example.util.JsonUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -15,10 +17,12 @@ import java.util.Map;
 
 public class NagerDateSource implements DataSource {
 
-    private final ApiHttpClient httpClient;
+    private final HttpClientWrapper httpClient;
     private final ObjectMapper objectMapper;
+    private static final String BASE_URL = "https://date.nager.at/api/v3/publicholidays/2026/";
+    private static final int LIMIT = 5;
 
-    public NagerDateSource(ApiHttpClient httpClient) {
+    public NagerDateSource(HttpClientWrapper httpClient) {
         this.httpClient = httpClient;
         this.objectMapper = new ObjectMapper();
     }
@@ -34,17 +38,19 @@ public class NagerDateSource implements DataSource {
 
         try {
             String countryCode = query.trim().toUpperCase();
-            String url = "https://date.nager.at/api/v3/publicholidays/2026/" + countryCode;
+            String url = BASE_URL + countryCode;
 
             String jsonResponse = httpClient.get(url);
 
             JsonNode root = objectMapper.readTree(jsonResponse);
 
             if (!root.isArray()) {
-                return result;
+                throw new RuntimeException("Nager.Date вернул не список праздников");
             }
 
-            for (JsonNode holiday : root) {
+            int limit = Math.min(root.size(), LIMIT);
+            for (int i = 0; i < limit; i++) {
+                JsonNode holiday = root.get(i);
                 Map<String, Object> fields = new LinkedHashMap<>();
 
                 fields.put("localName", JsonUtils.text(holiday.get("localName")));
@@ -72,7 +78,7 @@ public class NagerDateSource implements DataSource {
 
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Не удалось разобрать ответ Nager.Date: " + e.getMessage(), e);
-        } catch (RuntimeException e) {
+        } catch (HttpClientException e) {
             throw new RuntimeException("Ошибка при запросе к Nager.Date: " + e.getMessage(), e);
         }
 

@@ -1,0 +1,211 @@
+[ {
+  "source" : "TVmaze",
+  "category" : "tv-show",
+  "query" : "breaking bad",
+  "timestamp" : 1795016692.966423000,
+  "fields" : {
+    "title" : "Breaking Bad",
+    "url" : "https://www.tvmaze.com/shows/169/breaking-bad",
+    "premiered" : "2008-01-20",
+    "rating" : 9.2,
+    "genres" : [ "Drama", "Crime", "Thriller" ],
+    "image_url" : "https://static.tvmaze.com/uploads/images/medium_portrait/501/1253519.jpg"
+  }
+}, {
+  "source" : "TVmaze",
+  "category" : "tv-show",
+  "query" : "breaking bad",
+  "timestamp" : 1795016692.966423000,
+  "fields" : {
+    "title" : "Breaking Bad: Original Minisodes",
+    "url" : "https://www.tvmaze.com/shows/27845/breaking-bad-original-minisodes",
+    "premiered" : "2009-02-17",
+    "rating" : 7.0,
+    "genres" : [ "Comedy", "Crime" ],
+    "image_url" : "https://static.tvmaze.com/uploads/images/medium_portrait/216/540867.jpg"
+  }
+}, {
+  "source" : "TVmaze",
+  "category" : "tv-show",
+  "query" : "breaking bad",
+  "timestamp" : 1795016692.966423000,
+  "fields" : {
+    "title" : "Talking Bad",
+    "url" : "https://www.tvmaze.com/shows/1003/talking-bad",
+    "premiered" : "2013-08-11",
+    "rating" : null,
+    "genres" : [ ],
+    "image_url" : "https://static.tvmaze.com/uploads/images/medium_portrait/6/16586.jpg"
+  }
+}, {
+  "source" : "TVmaze",
+  "category" : "tv-show",
+  "query" : "breaking bad",
+  "timestamp" : 1795016692.966423000,
+  "fields" : {
+    "title" : "Breaking Band",
+    "url" : "https://www.tvmaze.com/shows/6101/breaking-band",
+    "premiered" : "2016-01-24",
+    "rating" : null,
+    "genres" : [ "Music" ],
+    "image_url" : "https://static.tvmaze.com/uploads/images/medium_portrait/23/59291.jpg"
+  }
+}, {
+  "source" : "TVmaze",
+  "category" : "tv-show",
+  "query" : "breaking bad",
+  "timestamp" : 1795016692.966423000,
+  "fields" : {
+    "title" : "Breaking the Band",
+    "url" : "https://www.tvmaze.com/shows/37136/breaking-the-band",
+    "premiered" : "2018-06-10",
+    "rating" : null,
+    "genres" : [ ],
+    "image_url" : "https://static.tvmaze.com/uploads/images/medium_portrait/158/396509.jpg"
+  }
+}, {
+  "source" : "Deezer",
+  "category" : "music",
+  "query" : "eminem",
+  "timestamp" : 1795016698.909038600,
+  "fields" : {
+    "title" : "Without Me",
+    "url" : "https://www.deezer.com/track/916424",
+    "rank" : 961431,
+    "duration" : 290,
+    "artist" : "Eminem",
+    "album" : {
+      "id" : 103248,
+      "title" : "The Eminem Show",
+      "cover_url" : "https://api.deezer.com/album/103248/image"
+    }
+  }
+}, {
+  "source" : "Deezer",
+  "category" : "music",
+  "query" : "eminem",
+  "timestamp" : 1795016698.909814100,
+  "fields" : {
+    "title" : "Love The Way You Lie",
+    "url" : "https://www.deezer.com/track/6461440",
+    "rank" : 963021,
+    "duration" : 263,
+    "artist" : "Eminem",
+    "album" : {
+      "id" : 595243,
+      "title" : "Recovery",
+      "cover_url" : "https://api.deezer.com/album/595243/image"
+    }
+  }
+}, {
+  "source" : "Deezer",
+  "category" : "music",
+  "query" : "eminem",
+  "timestamp" : 1795016698.909814100,
+  "fields" : {
+    "title" : "The Monster",
+    "url" : "https://www.deezer.com/track/72160317",
+    "rank" : 933798,
+    "duration" : 250,
+    "artist" : "Eminem",
+    "album" : {
+      "id" : 7090505,
+      "title" : "The Marshall Mathers LP2 (Deluxe)",
+      "cover_url" : "https://api.deezer.com/album/7090505/image"
+    }
+  }
+}, {
+  "source" : "Deezer",
+  "category" : "music",
+  "query" : "eminem",
+  "timestamp" : 1795016698.909814100,
+  "fields" : {
+    "title" : "Till I Collapse",
+    "url" : "https://www.deezer.com/track/916445",
+    "rank" : 908564,
+    "duration" : 297,
+    "artist" : "Eminem",
+    "album" : {
+      "id" : 103248,
+      "title" : "The Eminem Show",
+      "cover_url" : "https://api.deezer.com/album/103248/image"
+    }
+  }
+}, {
+  "source" : "Deezer",
+  "category" : "music",
+  "query" : "eminem",
+  "timestamp" : 1795016698.909814100,
+  "fields" : {
+    "title" : "Not Afraid",
+    "url" : "https://www.deezer.com/track/6461432",
+    "rank" : 867317,
+    "duration" : 251,
+    "artist" : "Eminem",
+    "album" : {
+      "id" : 595243,
+      "title" : "Recovery",
+      "cover_url" : "https://api.deezer.com/album/595243/image"
+    }
+  }
+}, {
+  "source" : "Nager.Date",
+  "category" : "holiday",
+  "query" : "US",
+  "timestamp" : 1795016699.577467500,
+  "fields" : {
+    "localName" : "New Year's Day",
+    "name" : "New Year's Day",
+    "date" : "2026-01-01",
+    "countryCode" : "US",
+    "types" : [ "Public", "Bank" ]
+  }
+}, {
+  "source" : "Nager.Date",
+  "category" : "holiday",
+  "query" : "US",
+  "timestamp" : 1795016699.577467500,
+  "fields" : {
+    "localName" : "Martin Luther King, Jr. Day",
+    "name" : "Martin Luther King, Jr. Day",
+    "date" : "2026-01-19",
+    "countryCode" : "US",
+    "types" : [ "Public", "Bank" ]
+  }
+}, {
+  "source" : "Nager.Date",
+  "category" : "holiday",
+  "query" : "US",
+  "timestamp" : 1795016699.577467500,
+  "fields" : {
+    "localName" : "Lincoln's Birthday",
+    "name" : "Lincoln's Birthday",
+    "date" : "2026-02-12",
+    "countryCode" : "US",
+    "types" : [ "Observance" ]
+  }
+}, {
+  "source" : "Nager.Date",
+  "category" : "holiday",
+  "query" : "US",
+  "timestamp" : 1795016699.577467500,
+  "fields" : {
+    "localName" : "Washington's Birthday",
+    "name" : "Presidents Day",
+    "date" : "2026-02-16",
+    "countryCode" : "US",
+    "types" : [ "Public", "Bank" ]
+  }
+}, {
+  "source" : "Nager.Date",
+  "category" : "holiday",
+  "query" : "US",
+  "timestamp" : 1795016699.577467500,
+  "fields" : {
+    "localName" : "Good Friday",
+    "name" : "Good Friday",
+    "date" : "2026-04-03",
+    "countryCode" : "US",
+    "types" : [ "Public" ]
+  }
+} ]

@@ -1,6 +1,8 @@
 package org.example.source;
 
 import org.example.http.ApiHttpClient;
+import org.example.http.HttpClientException;
+import org.example.http.HttpClientWrapper;
 import org.example.model.MediaRecord;
 import org.example.util.JsonUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -17,10 +19,12 @@ import java.util.Map;
 
 public class DeezerSource implements DataSource {
 
-    private final ApiHttpClient httpClient;
+    private final HttpClientWrapper httpClient;
     private final ObjectMapper objectMapper;
+    private static final String BASE_URL = "https://api.deezer.com/search?q=";
+    private static final int LIMIT = 5;
 
-    public DeezerSource(ApiHttpClient httpClient) {
+    public DeezerSource(HttpClientWrapper httpClient) {
         this.httpClient = httpClient;
         this.objectMapper = new ObjectMapper();
     }
@@ -37,21 +41,21 @@ public class DeezerSource implements DataSource {
         try {
             String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
 
-            String url = "https://api.deezer.com/search?q=" + encodedQuery + "&limit=5";
+            String url = BASE_URL + encodedQuery + "&limit=" + LIMIT;
             String jsonResponse = httpClient.get(url);
 
             JsonNode root = objectMapper.readTree(jsonResponse);
 
             JsonNode dataArray = root.get("data");
             if (dataArray == null || !dataArray.isArray()) {
-                return result;
+                throw new RuntimeException("В ответе Deezer нет списка data");
             }
 
             for (JsonNode track : dataArray) {
                 Map<String, Object> fields = new LinkedHashMap<>();
 
                 fields.put("title", JsonUtils.text(track.get("title")));
-                fields.put("deezer_url", JsonUtils.text(track.get("link")));
+                fields.put("url", JsonUtils.text(track.get("link")));
                 fields.put("rank", JsonUtils.integer(track.get("rank")));
                 fields.put("duration", JsonUtils.integer(track.get("duration")));
 
@@ -78,7 +82,7 @@ public class DeezerSource implements DataSource {
 
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Не удалось разобрать ответ Deezer: " + e.getMessage(), e);
-        } catch (RuntimeException e) {
+        } catch (HttpClientException e) {
             throw new RuntimeException("Ошибка при запросе к Deezer: " + e.getMessage(), e);
         }
 

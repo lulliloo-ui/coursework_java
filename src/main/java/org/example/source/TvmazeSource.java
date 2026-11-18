@@ -2,6 +2,8 @@ package org.example.source;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.example.http.ApiHttpClient;
+import org.example.http.HttpClientException;
+import org.example.http.HttpClientWrapper;
 import org.example.model.MediaRecord;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,10 +19,12 @@ import java.util.Map;
 
 public class TvmazeSource implements DataSource {
 
-    private final ApiHttpClient httpClient;
+    private final HttpClientWrapper httpClient;
     private final ObjectMapper objectMapper;
+    private static final String BASE_URL = "https://api.tvmaze.com/search/shows?q=";
+    private static final int LIMIT = 5;
 
-    public TvmazeSource(ApiHttpClient httpClient) {
+    public TvmazeSource(HttpClientWrapper httpClient) {
         this.httpClient = httpClient;
         this.objectMapper = new ObjectMapper();
     }
@@ -37,7 +41,7 @@ public class TvmazeSource implements DataSource {
         try {
             String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
 
-            String url = "https://api.tvmaze.com/search/shows?q=" + encodedQuery;
+            String url = BASE_URL + encodedQuery;
             String jsonResponse = httpClient.get(url);
 
             JsonNode root = objectMapper.readTree(jsonResponse);
@@ -82,7 +86,7 @@ public class TvmazeSource implements DataSource {
 
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Не удалось разобрать ответ TVmaze: " + e.getMessage(), e);
-        } catch (RuntimeException e) {
+        } catch (HttpClientException e) {
             throw new RuntimeException("Ошибка при запросе к TVmaze: " + e.getMessage(), e);
         }
 
